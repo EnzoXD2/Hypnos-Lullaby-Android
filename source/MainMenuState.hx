@@ -202,6 +202,10 @@ class MainMenuState extends MusicBeatState
 			myHugeNuts.color = FlxColor.GREEN;
 			add(myHugeNuts);
 		}
+		
+		#if android
+		addVirtualPad(LEFT_FULL, A_B_C);
+		#end
 
 		super.create();
 	}
