@@ -56,43 +56,6 @@ class PreloadState extends FlxState {
 
         preloadedAssets = new Map<String, FlxGraphic>();
 
-        var unownBg:FlxSprite = new FlxSprite();
-		unownBg.loadGraphic(Paths.image('Loading Unown'));
-        unownBg.setGraphicSize(Std.int(unownBg.width * globalRescale));
-        unownBg.updateHitbox();
-		backgroundGroup.add(unownBg);
-
-        bg = new FlxSprite();
-		bg.loadGraphic(Paths.image('Loading Hypno'));
-        bg.setGraphicSize(Std.int(bg.width * globalRescale));
-        bg.updateHitbox();
-		backgroundGroup.add(bg);
-
-        var gfBg:FlxSprite = new FlxSprite();
-		gfBg.loadGraphic(Paths.image('Loading GF'));
-        gfBg.setGraphicSize(Std.int(gfBg.width * globalRescale));
-        gfBg.updateHitbox();
-		backgroundGroup.add(gfBg);
-
-        var pendulum:FlxSprite = new FlxSprite();
-        pendulum.frames = Paths.getSparrowAtlas('Loading Screen Pendelum');
-        pendulum.animation.addByPrefix('load', 'Loading Pendelum Finished', 24, true);
-        pendulum.animation.play('load');
-        pendulum.setGraphicSize(Std.int(pendulum.width * globalRescale));
-        pendulum.updateHitbox();
-        backgroundGroup.add(pendulum);
-        pendulum.x = FlxG.width - (pendulum.width + 10);
-        pendulum.y = FlxG.height - (pendulum.height + 10);
-
-        add(backgroundGroup);
-        FlxTween.tween(FlxG.camera, {alpha: 1}, 0.5, {
-            onComplete: function(tween:FlxTween){
-                Thread.create(function(){
-                    assetGenerate();
-                });
-            }
-        });
-
         // save bullshit
         FlxG.save.bind('funkin', 'ninjamuffin99');
         if(FlxG.save.data != null) {
